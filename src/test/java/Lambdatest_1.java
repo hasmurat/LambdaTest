@@ -1,6 +1,6 @@
-package part2;
-
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
 
 
 public class Lambdatest_1 {
@@ -36,8 +35,8 @@ public class Lambdatest_1 {
         capabilities.setCapability("version", "92.0");
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("resolution","1024x768");
-        capabilities.setCapability("build", "First Test");
-        capabilities.setCapability("name", "Sample Test");
+        capabilities.setCapability("build", "LambdaTest");
+        capabilities.setCapability("name", "Chrome");
         capabilities.setCapability("network", true); // To enable network logs
         capabilities.setCapability("visual", true); // To enable step by step screenshot
         capabilities.setCapability("video", true); // To enable video recording
@@ -48,11 +47,6 @@ public class Lambdatest_1 {
         } catch (MalformedURLException e) {
             System.out.println("Invalid grid URL");
         }
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 
     }
 
@@ -128,6 +122,8 @@ public class Lambdatest_1 {
     class Scenario2PageActions extends Scenario2Page {
         Scenario2PageActions dragSlider(String value, int num) {
             actions = new Actions(driver);
+            JavascriptExecutor jse = driver;
+            jse.executeScript("window.scrollBy(0,350)");
             int volume = 0;
             for (int i = 0; i < 900; i++) {
                 actions.dragAndDropBy(SLIDER(value), i, 0).perform();
